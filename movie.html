@@ -18,7 +18,10 @@
 		<link rel="stylesheet" href="./css/movie.css">
 	</head>
 	<body>
+		<!-- background -->
 		<div class="bg"></div>
+		<!-- main nav -->
+
 		<div class="xl-header">
 			<div class="xl-header__inner">
 				<h1 class="xl-logo">
@@ -39,11 +42,12 @@
 				</ul>
 			</div>
 		</div>
+		<!-- the movie contents -->
 		<div class="movie_main">
 			<div class="ub ub-ac search-wrapper">
 				<div class="ub ub-f1 search-input">
-					<input type="text" placeholder="movie name">
-					<div class="search-btn">
+					<input type="text" placeholder="movie name" id="searchVal"> <!---->
+					<div class="search-btn" id="search-btn"><!---->
 						<i class="iconfont icon-search"></i>
 					</div>
 				</div>
@@ -52,8 +56,11 @@
 					<i class="iconfont icon-tianjia-"></i>
 				</div>
 			</div>
+			<!-- divided line -->
 			<div class="h-line"></div>
+			<!-- Movie List-->
 			<div class="ub ub-wrap movie-list" id="list">
+				<!--List data template-->
 				<!-- <div class="ub ub-ver list-item">
 					<div class="banner-wrapper">
 						<img src="./img/movies/1.jfif" alt="">
@@ -63,11 +70,11 @@
 					<div class="banner-inner">
 						<img src="./img/movies/1-1.jfif" alt="">
 					</div>
-					<div class="movie-name px-1">..</div>
+					<div class="movie-name px-1">movie</div>
 					<div class="ub ub-ac tags px-1">
-						<span class="label label-default">..</span>
-						<span class="label label-default">..</span>
-						<span class="label label-default">..</span>
+						<span class="label label-default">action</span>
+						<span class="label label-default">scary</span>
+						<span class="label label-default">comdey</span>
 					</div>
 					<div class="movie-desc px-1" title=".....</div>
 					<div class="ub ub-ac ub-pj options" id="option">
@@ -77,12 +84,12 @@
 				</div> -->
 			</div>
 		</div>
-		<!-- Modal -->
+		<!--Add/Edit pop-up box -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;=</span></button>
 		        <h4 class="modal-title" id="myModalLabel">add movie</h4>
 		      </div>
 		      <div class="modal-body">
@@ -164,11 +171,24 @@
 		<script src="js/banner_data.js"></script>
 		<script src="js/common.js"></script>
 		<script>
+			//Rating icon path settings
 			$.raty.path = 'img';
 			$(function(){
 				var cur_data = {}
 				var isEdit = false;
+				//Initialize list data
 				init_list();
+				//enter key search
+				$('#searchVal').keydown(function(e){
+					if(e.keyCode===13){
+						init_list()
+					}
+				});
+				//Click the search button to search
+				$('#search-btn').click(function(){
+					init_list()
+				})
+
 				// Initialize the cover image drop-down box data
 				 $("#myModal").on('shown.bs.modal',function(e){
 					 $('#banner').empty()
@@ -179,15 +199,7 @@
 					 }
 					 $('#banner').append(str)
 					 if(isEdit){
-						 // cur_data.id = $(this).data().id
-						 // cur_data.banner = $(this).data().banner
-						 // cur_data.banner_s = $(this).data().banner_s
-						 // cur_data.time = $(this).data().time
-						 // cur_data.isVip = $(this).data().isVip
-						 // cur_data.name = $(this).data().name
-						 // cur_data.score = $(this).data().score
-						 // cur_data.tags = $(this).data().tags
-						 // cur_data.desc = $(this).data().desc
+						
 						 $('#name').val(cur_data.name)
 						 $('#time').val(cur_data.time)
 						 $('#star').raty({
@@ -237,6 +249,20 @@
 					 $('#banner').val('')
 					 isEdit = false;
 				 })
+				 //List data mouseover animation
+				 $("#myModal").on('hide.bs.modal',function(e){
+					 $('#name').val('')
+					 $('#time').val('')
+					 $('#star').html('')
+					 $('#desc').val('')
+					 $('#tags').val([])
+					 $('input[name="vip"][value="1"]').attr('checked',false);
+					 $('input[name="vip"][value="2"]').attr('checked',false);
+					 $('#banner').val('')
+					 isEdit = false;
+				 })
+				 //List data mouseover animation
+
 				 $("#list").on('mouseenter','.banner-wrapper',function() {
 						$(this).parent().addClass('active')
 						$(this).css('display','none')
@@ -245,6 +271,7 @@
 						$(this).parent().find('.movie-desc').eq(0).css('display','-webkit-box')
 						$(this).parent().find('.options').eq(0).css('display','flex')
 				 })
+				 //List data mouse-out animation
 				 $("#list").on('mouseleave','.list-item',function() {
 						$(this).removeClass('active')
 						$(this).find('.banner-wrapper').eq(0).css('display','block')
@@ -254,6 +281,7 @@
 						$(this).find('.options').eq(0).css('display','none')
 						
 				})
+				//Click the Edit button
 				$("#list").on('click','i.edit-btn',function() {
 						console.log($(this).parent().data())
 						cur_data.id = $(this).parent().data().id
@@ -271,6 +299,7 @@
 						$('#myModal').modal('show')
 						
 				})
+				//Click the Delete button
 				$("#list").on('click','i.del-btn',function() {
 						console.log($(this).parent().data())
 						var movie_data = getlocalStorage('movies')||[];
@@ -284,6 +313,8 @@
 							},500)
 						}
 				})
+
+				//Confirm adding and editing data
 				
 				$('#sure').on('click',function(){
 					var name = $('#name').val()
@@ -369,18 +400,30 @@
 						init_list()
 					},500)
 				})
+				//List data functions
 				function init_list(){
 					$("#list").html('');
+					var val = $('#searchVal').val().replace(/\s+/g, "");
+
 					console.log('movie_data',movie_data)
 					var list = [];
 					var local_data = getlocalStorage('movies');
 					if(local_data){
-						list = local_data;
+						if(val===''){
+							list = local_data
+						}else{
+							list = local_data.filter(item=>item.name.indexOf(val)>-1)
+						}
 						
 					}else{
-						list = movie_data;
+						if(val===''){
+							list = movie_data
+						}else{
+							list = movie_data.filter(item=>item.name.indexOf(val)>-1)
+						}
 						setlocalStorage('movies',movie_data)
 					}
+					
 					var str = '';
 					for(var i=0;i<list.length;i++){
 						str+='<div class="ub ub-ver list-item">'
