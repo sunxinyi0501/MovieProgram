@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>movie</title>
+		<title>Movie</title>
 		<script src="js/jquery.min.js"></script>
 		<!-- The latest version of Bootstrap's core CSS files -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" />
@@ -25,7 +25,7 @@
 		<div class="xl-header">
 			<div class="xl-header__inner">
 				<h1 class="xl-logo">
-					<a class="j_maidian icon icon-logo" href="https://www.xunlei.com/" title="迅雷">
+					<a class="j_maidian icon icon-logo" href="https://www.xunlei.com/" title="loveMovie">
 						<img src="img/xl-logo2x.png" />
 					</a>
 				</h1>
@@ -56,6 +56,9 @@
 					<i class="iconfont icon-tianjia-"></i>
 				</div>
 			</div>
+			<div class="ub ub-ac ub-pc shaixuan px-1 mt-3" id="search_tag">
+				<!-- <span class="label label-default">action</span> -->
+		</div>
 			<!-- divided line -->
 			<div class="h-line"></div>
 			<!-- Movie List-->
@@ -143,10 +146,10 @@
 						<div class="form-left">LABEL：</div>
 						<div class="ub ub-ac ub-f1">
 							<select id="tags" class="selectpicker show-tick form-control" multiple data-live-search="false">
-								<option label="action" value="action"></option>
+								<option label="action" value="Action"></option>
 								<option label="Comedy" value="Comedy"></option>
-								<option label="mystical" value="mystical"></option>
-								<option label="skit" value="skit"></option>
+								<option label="mystical" value="Mystical"></option>
+								<option label="skit" value="Skit"></option>
 							</select>
 						</div>
 					</div> 
@@ -174,16 +177,48 @@
 			//Rating icon path settings
 			$.raty.path = 'img';
 			$(function(){
+				var tags=['Action','Comedy','Mystical','Skit']
 				var cur_data = {}
 				var isEdit = false;
+
+				//Initialize filter tags
+				init_search_tahs();
 				//Initialize list data
 				init_list();
+				function init_search_tahs(){
+					 $('#search_tag').empty()
+					var strTags = '';
+					for(var i=0;i<tags.length;i++){
+						strTags+='<span data-tag="'+tags[i]+'" class="label label-default">'+tags[i]+'</span>'
+					}
+					$('#search_tag').append(strTags)
+				}
+
 				//enter key search
 				$('#searchVal').keydown(function(e){
 					if(e.keyCode===13){
 						init_list()
 					}
 				});
+				//Selection Method
+				$('#search_tag').on('click','span.label',function(e){
+					console.log(this)
+					if($(this).hasClass('active')){
+						$(this).removeClass('active')
+					}else{
+						$(this).addClass('active')
+					}
+					var selectedTags = []
+					$('#search_tag .label').each(function(){
+						if($(this).hasClass('active')){
+							selectedTags.push($(this).data().tag)
+						}
+					})
+					var searchStr = selectedTags.join(',')
+					$('#search_tag_val').val(searchStr)
+					init_list()
+				})
+
 				//Click the search button to search
 				$('#search-btn').click(function(){
 					init_list()
@@ -197,7 +232,16 @@
 					 for(var i=0;i<banner_data.length;i++){
 						 str+='<option value="'+banner_data[i].id+'">'+banner_data[i].name+'</option>'
 					 }
+
 					 $('#banner').append(str)
+					 var strTags = '';
+					 strTags+='<option value="0">Please choose</option>'
+					 for(var i=0;i<tags.length;i++){
+					 	strTags+='<option value="'+tags[i]+'" label="'+tags[i]+'"></option>'
+					 }
+					 $('#tags').append(strTags)
+
+					 
 					 if(isEdit){
 						
 						 $('#name').val(cur_data.name)
@@ -249,20 +293,7 @@
 					 $('#banner').val('')
 					 isEdit = false;
 				 })
-				 //List data mouseover animation
-				 $("#myModal").on('hide.bs.modal',function(e){
-					 $('#name').val('')
-					 $('#time').val('')
-					 $('#star').html('')
-					 $('#desc').val('')
-					 $('#tags').val([])
-					 $('input[name="vip"][value="1"]').attr('checked',false);
-					 $('input[name="vip"][value="2"]').attr('checked',false);
-					 $('#banner').val('')
-					 isEdit = false;
-				 })
-				 //List data mouseover animation
-
+				 //List data mouseover Move-in animation 
 				 $("#list").on('mouseenter','.banner-wrapper',function() {
 						$(this).parent().addClass('active')
 						$(this).css('display','none')
@@ -270,6 +301,16 @@
 						$(this).parent().find('.tags').eq(0).css('display','flex')
 						$(this).parent().find('.movie-desc').eq(0).css('display','-webkit-box')
 						$(this).parent().find('.options').eq(0).css('display','flex')
+				 })
+				 //List data mouseover Move-out animation
+
+				 $("#list").on('mouseleave','.list-item',function() {
+						$(this).removeClass('active')
+						$(this).find('.banner-wrapper').eq(0).css('display','block')
+						$(this).find('.banner-inner').eq(0).css('display','none')
+						$(this).find('.tags').eq(0).css('display','none')
+						$(this).find('.movie-desc').eq(0).css('display','none')
+						$(this).find('.options').eq(0).css('display','none')
 				 })
 				 //List data mouse-out animation
 				 $("#list").on('mouseleave','.list-item',function() {
@@ -404,22 +445,33 @@
 				function init_list(){
 					$("#list").html('');
 					var val = $('#searchVal').val().replace(/\s+/g, "");
+					var search_tag_val = $('#search_tag_val').val().replace(/\s+/g, "");
+					console.log('search_tag_val',search_tag_val)
 
 					console.log('movie_data',movie_data)
 					var list = [];
 					var local_data = getlocalStorage('movies');
 					if(local_data){
 						if(val===''){
-							list = local_data
+							if(search_tag_val){
+								list = local_data.filter(item=>item.tags.some(item=>search_tag_val.indexOf(item)>-1))
+							}else{
+								list = local_data
+							}
+							
 						}else{
-							list = local_data.filter(item=>item.name.indexOf(val)>-1)
+							list = local_data.filter(item=>item.name.indexOf(val)>-1&&item.tags.some(item=>search_tag_val.indexOf(item)>-1))
 						}
 						
 					}else{
 						if(val===''){
-							list = movie_data
+							if(search_tag_val){
+								list = movie_data.filter(item=>item.tags.some(item=>search_tag_val.indexOf(item)>-1))
+							}else{
+								list = movie_data
+							}
 						}else{
-							list = movie_data.filter(item=>item.name.indexOf(val)>-1)
+							list = movie_data.filter(item=>item.name.indexOf(val)>-1&&item.tags.some(item=>search_tag_val.indexOf(item)>-1))
 						}
 						setlocalStorage('movies',movie_data)
 					}
@@ -448,7 +500,7 @@
 						str+='	</div>'
 						str+='	<div class="movie-desc px-1" title="introduce：'+list[i].desc+'">introduce：'+list[i].desc+'</div>'
 						str+='	<div class="ub ub-ac ub-pj options" id="option">'
-						str+='		<div class="see-btn">watch now!</div>'
+						str+='		<div class="see-btn">Watch Now!</div>'
 						str+='		<div class="edit" data-id="'+list[i].id+'" data-banner="'+list[i].bannerInfo.banner+'" data-banner_s="'+list[i].bannerInfo.banner_s+'" data-banner_id="'+list[i].bannerInfo.id+'" data-isVip="'+list[i].isVip+'" data-time="'+list[i].time+'" data-name="'+list[i].name+'" data-score="'+list[i].score+'" data-tags="'+list[i].tags+'"  data-desc="'+list[i].desc+'"><i class="iconfont icon-edit edit-btn"></i><i class="iconfont icon-shanchu del-btn"></i></div>'
 						str+='	</div>'
 						str+='</div>'
