@@ -31,23 +31,24 @@
 				</h1>
 				<ul class="xl-nav">
 					<li class="j_maidian xl-nav__item">
-						<a class="nav-link" href="https://www.xunlei.com/" title="home">homepage</a>
+						<a class="nav-link" href="index.html" title="home">homepage</a>
 					</li>
 					<li class="j_maidian xl-nav__item cur">
 						<a class="nav-link" href="./movie.html" target="_blank" title="moviee">movie</a>
 					</li>
 					<li class="j_maidian xl-nav__item">
-						<a class="nav-link" href="http://dl.xunlei.com/" target="_blank" title="con">contact</a>
+						<a class="nav-link" href="index.html" target="_blank" title="con">contact</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<!-- the movie contents -->
 		<div class="movie_main">
+			<!-- Search box section -->
 			<div class="ub ub-ac search-wrapper">
 				<div class="ub ub-f1 search-input">
-					<input type="text" placeholder="movie name" id="searchVal"> <!---->
-					<div class="search-btn" id="search-btn"><!---->
+					<input type="text" placeholder="Movie Name" id="searchVal">
+					<div class="search-btn" id="search-btn">
 						<i class="iconfont icon-search"></i>
 					</div>
 				</div>
@@ -57,13 +58,14 @@
 				</div>
 			</div>
 			<div class="ub ub-ac ub-pc shaixuan px-1 mt-3" id="search_tag">
-				<!-- <span class="label label-default">action</span> -->
-		</div>
-			<!-- divided line -->
+					<!-- <span class="label label-default">action</span> -->
+			</div>
+			<input type="hidden" id="search_tag_val">
+			<!-- Divided line -->
 			<div class="h-line"></div>
-			<!-- Movie List-->
+			<!-- Movie list -->
 			<div class="ub ub-wrap movie-list" id="list">
-				<!--List data template-->
+				<!-- list data template -->
 				<!-- <div class="ub ub-ver list-item">
 					<div class="banner-wrapper">
 						<img src="./img/movies/1.jfif" alt="">
@@ -77,28 +79,24 @@
 					<div class="ub ub-ac tags px-1">
 						<span class="label label-default">action</span>
 						<span class="label label-default">scary</span>
-						<span class="label label-default">comdey</span>
-					</div>
-					<div class="movie-desc px-1" title=".....</div>
-					<div class="ub ub-ac ub-pj options" id="option">
-						<div class="see-btn">watch now</div>
-						<div><i class="iconfont icon-edit"></i></div>
+						
+				
 					</div>
 				</div> -->
 			</div>
 		</div>
-		<!--Add/Edit pop-up box -->
+		<!-- Add/Edit pop-up box -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;=</span></button>
-		        <h4 class="modal-title" id="myModalLabel">add movie</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Add Movie</h4>
 		      </div>
 		      <div class="modal-body">
 				<div class="ub ub-ver w100">
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">movie name：</div>
+						<div class="form-left">Movie Name:</div>
 						<div class="ub ub-f1">
 							<div class="text-input w100">
 								<input type="text" id="name">
@@ -106,7 +104,7 @@
 						</div>
 					</div>
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">hours：</div>
+						<div class="form-left">Hours:</div>
 						<div class="ub ub-f1">
 							<div class="text-input w100">
 								<input type="text" id="time">
@@ -114,7 +112,7 @@
 						</div>
 					</div>
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">introduction：</div>
+						<div class="form-left">Introduction:</div>
 						<div class="ub ub-f1">
 							<div class="text-input w100">
 								<input type="textarea" id="desc">
@@ -122,7 +120,7 @@
 						</div>
 					</div>
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">grade：</div>
+						<div class="form-left">Rate:</div>
 						<div class="ub ub-ac ub-f1">
 							<div id="star"></div>
 							<div class="ml-1" id="scoreShow"></div>
@@ -130,7 +128,7 @@
 						</div>
 					</div> 
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">VIP：</div>
+						<div class="form-left">VIP?</div>
 						<div class="ub ub-f1">
 							<div class="w100">
 								 <label class="radio-inline">
@@ -143,18 +141,15 @@
 						</div>
 					</div>
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">LABEL：</div>
+						<div class="form-left">Tags</div>
 						<div class="ub ub-ac ub-f1">
 							<select id="tags" class="selectpicker show-tick form-control" multiple data-live-search="false">
-								<option label="action" value="Action"></option>
-								<option label="Comedy" value="Comedy"></option>
-								<option label="mystical" value="Mystical"></option>
-								<option label="skit" value="Skit"></option>
+								
 							</select>
 						</div>
 					</div> 
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">Cover image：</div>
+						<div class="form-left">Movie Pictures:</div>
 						<div class="ub ub-ac ub-f1">
 							<select id="banner" class="selectpicker show-tick form-control" data-live-search="false">
 							</select>
@@ -163,8 +158,8 @@
 				</div>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">delete</button>
-		        <button type="button" class="btn btn-primary" id="sure">make sure</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancellation</button>
+		        <button type="button" class="btn btn-primary" id="sure">Sure</button>
 		      </div>
 		    </div>
 		  </div>
@@ -174,16 +169,15 @@
 		<script src="js/banner_data.js"></script>
 		<script src="js/common.js"></script>
 		<script>
-			//Rating icon path settings
+			// Scoring icon path setting
 			$.raty.path = 'img';
 			$(function(){
-				var tags=['Action','Comedy','Mystical','Skit']
+				var tags=['Action','Comedy','Fantasy','Romantic']
 				var cur_data = {}
 				var isEdit = false;
-
-				//Initialize filter tags
+				// Initialize filter labels
 				init_search_tahs();
-				//Initialize list data
+				//initializer list data
 				init_list();
 				function init_search_tahs(){
 					 $('#search_tag').empty()
@@ -193,14 +187,14 @@
 					}
 					$('#search_tag').append(strTags)
 				}
-
-				//enter key search
+				
+				// enter key search
 				$('#searchVal').keydown(function(e){
 					if(e.keyCode===13){
 						init_list()
 					}
 				});
-				//Selection Method
+				//filter method
 				$('#search_tag').on('click','span.label',function(e){
 					console.log(this)
 					if($(this).hasClass('active')){
@@ -218,32 +212,28 @@
 					$('#search_tag_val').val(searchStr)
 					init_list()
 				})
-
 				//Click the search button to search
 				$('#search-btn').click(function(){
 					init_list()
 				})
-
 				// Initialize the cover image drop-down box data
 				 $("#myModal").on('shown.bs.modal',function(e){
 					 $('#banner').empty()
+					 $('#tags').empty()
 					 var str = '';
-					 str+='<option value="0">please choose</option>'
+					 str+='<option value="0">Please Choose</option>'
 					 for(var i=0;i<banner_data.length;i++){
 						 str+='<option value="'+banner_data[i].id+'">'+banner_data[i].name+'</option>'
 					 }
-
 					 $('#banner').append(str)
+					 
 					 var strTags = '';
-					 strTags+='<option value="0">Please choose</option>'
+					 strTags+='<option value="0">Please Choose</option>'
 					 for(var i=0;i<tags.length;i++){
 					 	strTags+='<option value="'+tags[i]+'" label="'+tags[i]+'"></option>'
 					 }
 					 $('#tags').append(strTags)
-
-					 
 					 if(isEdit){
-						
 						 $('#name').val(cur_data.name)
 						 $('#time').val(cur_data.time)
 						 $('#star').raty({
@@ -293,7 +283,7 @@
 					 $('#banner').val('')
 					 isEdit = false;
 				 })
-				 //List data mouseover Move-in animation 
+				 // List data mouseover move-in animation
 				 $("#list").on('mouseenter','.banner-wrapper',function() {
 						$(this).parent().addClass('active')
 						$(this).css('display','none')
@@ -302,17 +292,7 @@
 						$(this).parent().find('.movie-desc').eq(0).css('display','-webkit-box')
 						$(this).parent().find('.options').eq(0).css('display','flex')
 				 })
-				 //List data mouseover Move-out animation
-
-				 $("#list").on('mouseleave','.list-item',function() {
-						$(this).removeClass('active')
-						$(this).find('.banner-wrapper').eq(0).css('display','block')
-						$(this).find('.banner-inner').eq(0).css('display','none')
-						$(this).find('.tags').eq(0).css('display','none')
-						$(this).find('.movie-desc').eq(0).css('display','none')
-						$(this).find('.options').eq(0).css('display','none')
-				 })
-				 //List data mouse-out animation
+				 // List data mouseover move-out animation
 				 $("#list").on('mouseleave','.list-item',function() {
 						$(this).removeClass('active')
 						$(this).find('.banner-wrapper').eq(0).css('display','block')
@@ -322,7 +302,7 @@
 						$(this).find('.options').eq(0).css('display','none')
 						
 				})
-				//Click the Edit button
+				// Click the Edit button
 				$("#list").on('click','i.edit-btn',function() {
 						console.log($(this).parent().data())
 						cur_data.id = $(this).parent().data().id
@@ -340,7 +320,7 @@
 						$('#myModal').modal('show')
 						
 				})
-				//Click the Delete button
+				// Click the Delete button
 				$("#list").on('click','i.del-btn',function() {
 						console.log($(this).parent().data())
 						var movie_data = getlocalStorage('movies')||[];
@@ -349,14 +329,12 @@
 							movie_data.splice(index,1)
 							setlocalStorage('movies',movie_data)
 							setTimeout(function(){
-								alert('success delete!')
+								alert('Deleted successfully!')
 								init_list()
 							},500)
 						}
 				})
-
-				//Confirm adding and editing data
-				
+				// Confirm adding and editing data
 				$('#sure').on('click',function(){
 					var name = $('#name').val()
 					var time = $('#time').val()
@@ -388,7 +366,7 @@
 						return
 					}
 					if(banner==0){
-						alert('Please select the cover image')
+						alert('Please select the movie image')
 						return
 					}
 					var bannerObj = {}
@@ -401,7 +379,7 @@
 					}
 					
 					var movie_data = getlocalStorage('movies')||[];
-					if(isEdit){// Editor
+					if(isEdit){// edit
 						movie_data = movie_data.map(item=>{
 							if(item.id==cur_data.id){
 								item.bannerInfo.id = bannerObj.id;
@@ -441,13 +419,12 @@
 						init_list()
 					},500)
 				})
-				//List data functions
+				// List data functions
 				function init_list(){
 					$("#list").html('');
 					var val = $('#searchVal').val().replace(/\s+/g, "");
 					var search_tag_val = $('#search_tag_val').val().replace(/\s+/g, "");
 					console.log('search_tag_val',search_tag_val)
-
 					console.log('movie_data',movie_data)
 					var list = [];
 					var local_data = getlocalStorage('movies');
@@ -475,7 +452,6 @@
 						}
 						setlocalStorage('movies',movie_data)
 					}
-					
 					var str = '';
 					for(var i=0;i<list.length;i++){
 						str+='<div class="ub ub-ver list-item">'
@@ -498,9 +474,9 @@
 							}
 						}
 						str+='	</div>'
-						str+='	<div class="movie-desc px-1" title="introduce：'+list[i].desc+'">introduce：'+list[i].desc+'</div>'
+						str+='	<div class="movie-desc px-1" title="Introduction:'+list[i].desc+'">Introduction:'+list[i].desc+'</div>'
 						str+='	<div class="ub ub-ac ub-pj options" id="option">'
-						str+='		<div class="see-btn">Watch Now!</div>'
+						str+='		<div class="see-btn">Click Here</div>'
 						str+='		<div class="edit" data-id="'+list[i].id+'" data-banner="'+list[i].bannerInfo.banner+'" data-banner_s="'+list[i].bannerInfo.banner_s+'" data-banner_id="'+list[i].bannerInfo.id+'" data-isVip="'+list[i].isVip+'" data-time="'+list[i].time+'" data-name="'+list[i].name+'" data-score="'+list[i].score+'" data-tags="'+list[i].tags+'"  data-desc="'+list[i].desc+'"><i class="iconfont icon-edit edit-btn"></i><i class="iconfont icon-shanchu del-btn"></i></div>'
 						str+='	</div>'
 						str+='</div>'
@@ -512,3 +488,5 @@
 		</script>
 	</body>
 </html>
+
+		

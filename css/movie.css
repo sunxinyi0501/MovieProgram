@@ -7,7 +7,7 @@
 	background-repeat: no-repeat;
 	background-position: center top;
 }
-/* Subject content */
+/* Main content */
 .movie_main{
 	width:1200px;
 	min-height:500px;
@@ -242,7 +242,7 @@
 	-webkit-line-clamp: 2;
 	word-wrap: break-word;
 	/* display: -webkit-box; */
-	max-height: 50px;
+	min-height: 40px;
 	overflow: hidden;
 	line-height: 20px;
 	white-space: normal;
@@ -276,4 +276,28 @@
 }
 .options .edit i:hover{
 	color:#ff5c38;
+}
+
+.shaixuan{
+	height:40px;
+	
+}
+.shaixuan span.label-default{
+	margin:0 6px;
+	height:20px;
+	line-height: 20px;;
+	display: inline-block;
+	background-color:rgba(255,255,255,.9);
+	padding:0px 10px;
+	border-radius:10px;
+	color:#333;
+	font-weight: normal;
+	cursor: pointer;
+}
+.shaixuan span.label-default:hover{
+	color:#ff5c38;
+}
+.shaixuan span.label-default.active{
+	background: #ff5c38;
+	color:#fff;
 }
