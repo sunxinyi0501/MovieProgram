@@ -2,37 +2,7 @@ var banner_data=[
 	{
 		id:1,
 		name:'movie1',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
-	},{
-		id:2,
-		name:'movie2',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
-	},{
-		id:3,
-		name:'movie3',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
-	},{
-		id:4,
-		name:'movie4',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
-	},{
-		id:5,
-		name:'movie5',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
-	},{
-		id:6,
-		name:'movie6',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
-	},{
-		id:7,
-		name:'movie7',
-		banner:'./img/movies/1.jfif',
-		banner_s:'./img/movies/1-1.jfif',
+		banner:'./img/movies/mov.jfif',
+		banner_s:'./img/movies/mov.jfif',
 	}
 ]
