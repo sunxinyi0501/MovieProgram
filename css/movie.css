@@ -211,7 +211,7 @@
 	
 }
 .form-item .form-left{
-	width:80px;
+	width:106px;
 	font-size:14px;
 	text-align: right;
 }
@@ -300,4 +300,8 @@
 .shaixuan span.label-default.active{
 	background: #ff5c38;
 	color:#fff;
+}
+.detal-text{
+	font-size:14px;
+	padding-left:10px;
 }

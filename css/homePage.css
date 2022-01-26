@@ -352,3 +352,83 @@
 	-webkit-animation: ani_opacity_re .5s .2s linear both;
 	animation: ani_opacity_re .5s .2s linear both;
 }
+.center{
+	width:680px;
+	height:60%;
+	position: absolute;
+	left:50%;
+	top:30%;
+	transform: translateX(-50%);
+	/* border:1px solid red; */
+	background-color: rgba(0,0,0,0.2);
+	border-radius:20px;
+}
+
+.chidai{
+	width:400px;
+	height:243;
+	position: absolute;
+	left:0;
+	top:0;
+	transform: translate(-50%,-50%);
+	background-image: url(../img/earth01.png);
+	background-repeat: no-repeat;
+	background-position:center;
+	background-size: 100% 100%;
+}
+.mask-tips{
+	width:100%;
+	height:100%;
+	position: fixed;
+	left:0;
+	top:0;
+	z-index: 999;
+	opacity: 1;
+	transition: all .5s ease-in;
+	background-image: url(../img/bg.jpg);
+	background-repeat: no-repeat;
+	background-position:center;
+	background-size: 100% 100%;
+}
+.mask-tips.hide{
+	animation: maskHide .5s linear forwards;
+}
+@keyframes maskHide{
+	from{
+		z-index: 999;
+		opacity: 1;
+	}
+	to{
+		z-index: 0;
+		opacity: 0;
+	}
+}
+@-webkit-keyframes maskHide{
+	from{
+		z-index: 999;
+		opacity: 1;
+	}
+	to{
+		z-index: 0;
+		opacity: 0;
+	}
+}
+.in-btn{
+	width:200px;
+	height:50px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-left:-100px;
+	text-align: center;
+	line-height: 50px;
+	border:1px solid red;
+	border-radius:30px;
+	color:#fff;
+	font-size:30px;
+	transition: all .3s ease-in;
+	cursor: pointer;
+}
+.in-btn:hover{
+	background-color: rgba(	220,20,60,.3);
+}
