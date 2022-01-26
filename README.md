@@ -1,7 +1,7 @@
 # MovieProgram
 
 ## Introduction
-This is a personalized website with information about movies.By using this website, users can:
+This is a personalized website with information about movies.With some existing website features, this website can serve as a list of movies for users.By using this website, users can:
 - **Add** your favorite movie, you can fill in the name, movie duration and other basic information.
 - **Filter** the movies you want to watch by movie genre.
 - **Delete** the movies you don't want to watch.
