@@ -25,7 +25,7 @@
 		<div class="xl-header">
 			<div class="xl-header__inner">
 				<h1 class="xl-logo">
-					<a class="j_maidian icon icon-logo" href="https://www.xunlei.com/" title="loveMovie">
+					<a class="j_maidian icon icon-logo" href="./index.html" title="loveMovie">
 						<img src="img/xl-logo2x.png" />
 					</a>
 				</h1>
@@ -126,22 +126,9 @@
 							<div class="ml-1" id="scoreShow"></div>
 							<input type="hidden" id="score">
 						</div>
-					</div> 
-					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">VIP?</div>
-						<div class="ub ub-f1">
-							<div class="w100">
-								 <label class="radio-inline">
-										<input type="radio" name="vip" value="1" /><span class="ml-1">YES</span>
-								</label>
-								<label class="radio-inline" style="margin-left:30px;">
-									<input type="radio" name="vip" value="2"/><span class="ml-1">NO</span>
-								</label>
-							</div>
-						</div>
 					</div>
 					<div class="ub w100 ub-ac form-item my-1">
-						<div class="form-left">Tags</div>
+						<div class="form-left">Tags:</div>
 						<div class="ub ub-ac ub-f1">
 							<select id="tags" class="selectpicker show-tick form-control" multiple data-live-search="false">
 								
@@ -160,6 +147,51 @@
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancellation</button>
 		        <button type="button" class="btn btn-primary" id="sure">Sure</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Detail pop-up box -->
+		<div class="modal fade" id="myModalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Movie detail</h4>
+		      </div>
+		      <div class="modal-body">
+				<div class="ub ub-ver w100">
+					<div class="ub w100 ub-ac form-item my-1">
+						<div class="form-left">Movie Name:</div>
+						<div class="ub ub-f1">
+							<span class="detal-text" id="detail_name"></span>
+						</div>
+					</div>
+					<div class="ub w100 ub-ac form-item my-1">
+						<div class="form-left">Hours:</div>
+						<div class="ub ub-f1">
+							<span class="detal-text" id="detail_time"></span>
+						</div>
+					</div>
+					<div class="ub w100 ub-ac form-item my-1">
+						<div class="form-left">Introduction:</div>
+						<div class="ub ub-f1">
+							<span class="detal-text" id="detail_desc"></span>
+						</div>
+					</div>
+					<div class="ub w100 ub-ac form-item my-1">
+						<div class="form-left">Rate:</div>
+						<div class="ub ub-ac ub-f1">
+							<span class="detal-text" id="detail_score"></span>
+						</div>
+					</div>
+					<div class="ub w100 ub-ac form-item my-1">
+						<div class="form-left">Tags:</div>
+						<div class="ub ub-ac ub-f1">
+							<span class="detal-text" id="detail_tags"></span>
+						</div>
+					</div>
+				</div>
 		      </div>
 		    </div>
 		  </div>
@@ -216,6 +248,15 @@
 				$('#search-btn').click(function(){
 					init_list()
 				})
+				$("#list").on('click','div.see-btn',function(e){
+					console.log('e', $(this).next().data())
+					
+					$('#detail_name').html($(this).next().data().name)
+					$('#detail_time').html($(this).next().data().time)
+					$('#detail_score').html($(this).next().data().score)
+					$('#detail_desc').html($(this).next().data().desc)
+					$('#detail_tags').html($(this).next().data().tags)
+				})
 				// Initialize the cover image drop-down box data
 				 $("#myModal").on('shown.bs.modal',function(e){
 					 $('#banner').empty()
@@ -246,19 +287,10 @@
 						 	cancel:true,
 						 	targetKeep:true
 						 });
-						 if(cur_data.isVip){ // vip
-							 $('input[name="vip"][value="1"]').attr('checked','checked');
-							 $('input[name="vip"][value="2"]').attr('checked',false);
-						 }else{
-							 $('input[name="vip"][value="2"]').attr('checked','checked');
-							 $('input[name="vip"][value="1"]').attr('checked',false);
-						 }
 						 $('#desc').val(cur_data.desc)
 						 $('#tags').val(cur_data.tags)
 						 $('#banner').val(cur_data.bannerInfo.id)
 					 }else{
-						 $('input[name="vip"][value="1"]').attr('checked',false);
-						 $('input[name="vip"][value="2"]').attr('checked','checked');
 						 $('#star').raty({
 						 	target:$('#scoreShow'),
 						 	targetScore:$('#score'),
@@ -278,8 +310,6 @@
 					 $('#star').html('')
 					 $('#desc').val('')
 					 $('#tags').val([])
-					 $('input[name="vip"][value="1"]').attr('checked',false);
-					 $('input[name="vip"][value="2"]').attr('checked',false);
 					 $('#banner').val('')
 					 isEdit = false;
 				 })
@@ -341,12 +371,10 @@
 					var score = $('#score').val()
 					var desc = $('#desc').val()
 					var tags = $('#tags').val()
-					var vip = $('input[name="vip"]:radio:checked').val();
 					var banner = $('#banner').val()
 					console.log('name',name)
 					console.log('time',time)
 					console.log('score',score)
-					console.log('vip',vip)
 					console.log('desc',desc)
 					console.log('tags',tags)
 					if(name===''){
@@ -363,6 +391,10 @@
 					}
 					if(tags.length===0){
 						alert('Please select a tag')
+						return
+					}
+					if(tags.length>2){
+						alert('You can select up to two labels')
 						return
 					}
 					if(banner==0){
@@ -385,7 +417,6 @@
 								item.bannerInfo.id = bannerObj.id;
 								item.bannerInfo.banner = bannerObj.banner;
 								item.bannerInfo.banner_s = bannerObj.banner_s;
-								item.isVip = vip==1?true:false;
 								item.time = time
 								item.name = name
 								item.score = score
@@ -403,7 +434,6 @@
 								banner:bannerObj.banner,
 								banner_s:bannerObj.banner_s,
 							},
-							isVip:vip==1?true:false,
 							time:time,
 							name:name,
 							score:score,
@@ -428,6 +458,7 @@
 					console.log('movie_data',movie_data)
 					var list = [];
 					var local_data = getlocalStorage('movies');
+					console.log('val',val)
 					if(local_data){
 						if(val===''){
 							if(search_tag_val){
@@ -459,9 +490,6 @@
 						str+='		<img src="'+list[i].bannerInfo.banner+'" alt="">'
 						str+='		<div class="time">'+list[i].time+'</div>'
 						str+='		<div class="score">'+list[i].score+'</div>'
-						if(list[i].isVip){
-							str+='<div class="vip"><img src="./img/tag_vip_x1.png" /></div>'
-						}
 						str+='	</div>'
 						str+='	<div class="banner-inner">'
 						str+='		<img src="'+list[i].bannerInfo.banner_s+'" alt="">'
@@ -476,7 +504,7 @@
 						str+='	</div>'
 						str+='	<div class="movie-desc px-1" title="Introduction:'+list[i].desc+'">Introduction:'+list[i].desc+'</div>'
 						str+='	<div class="ub ub-ac ub-pj options" id="option">'
-						str+='		<div class="see-btn">Click Here</div>'
+						str+='		<div class="see-btn" data-toggle="modal" data-target="#myModalDetail">Click Here</div>'
 						str+='		<div class="edit" data-id="'+list[i].id+'" data-banner="'+list[i].bannerInfo.banner+'" data-banner_s="'+list[i].bannerInfo.banner_s+'" data-banner_id="'+list[i].bannerInfo.id+'" data-isVip="'+list[i].isVip+'" data-time="'+list[i].time+'" data-name="'+list[i].name+'" data-score="'+list[i].score+'" data-tags="'+list[i].tags+'"  data-desc="'+list[i].desc+'"><i class="iconfont icon-edit edit-btn"></i><i class="iconfont icon-shanchu del-btn"></i></div>'
 						str+='	</div>'
 						str+='</div>'
