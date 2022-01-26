@@ -18,6 +18,7 @@ This is a personalized website with information about movies.By using this websi
 ## Technologies used
 - HTML/CSS/JAVASCRIPT
 - Bootstrap
+- EmailJs
 
 ## Start-up method
 - Use **http-server**
