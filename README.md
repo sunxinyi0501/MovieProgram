@@ -22,4 +22,4 @@ This is a personalized website with information about movies.With some existing 
 
 ## Start-up method
 - Use **http-server**
-- Open the page directly from the folder
+- Or open the page directly from the folder
