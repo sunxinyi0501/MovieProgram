@@ -9,16 +9,16 @@ This is a personalized website with information about movies.By using this websi
 - **Send** email to me and give me some feedback in Contact Page.
 
 ## Basic usage (illustrated)
-1.User can look up the movie you added by entering the name of the movie, or you can look it up by using the movie genre button below.
+- User can look up the movie you added by entering the name of the movie, or you can look it up by using the movie genre button below.
 ![image](https://user-images.githubusercontent.com/50935437/151246953-368b94e6-c71b-422d-8649-0a372dd2e5ea.png)
 
-2.Use the "click" bottom , it can show the movie basic information 
+- Use the "click" bottom , it can show the movie basic information 
 ![image](https://user-images.githubusercontent.com/50935437/151247206-fbc90448-c007-4b10-9465-014ccd9da9c7.png)
 
 ## Technologies used
-1.HTML/CSS/JAVASCRIPT
-2.Bootstrap
+- HTML/CSS/JAVASCRIPT
+- Bootstrap
 
 ## Start-up method
-1.Use **http-server**
-2.Open the page directly from the folder
+- Use **http-server**
+- Open the page directly from the folder
