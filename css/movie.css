@@ -204,6 +204,9 @@
 	border:1px solid #ccc;
 	border-radius:5px;
 }
+.form-item .text-input.detail{
+	border:1px solid rgb(100,149,237);
+}
 .form-item .text-input input{
 	outline: none;
 	width:100%;
