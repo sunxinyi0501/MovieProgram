@@ -476,9 +476,15 @@
 							}else{
 								list = local_data
 							}
-							
 						}else{
-							list = local_data.filter(item=>item.name.indexOf(val)>-1&&item.tags.some(item=>search_tag_val.indexOf(item)>-1))
+							// Does the movie exist with the tag selected
+							if(search_tag_val === '') {
+								// If empty, the search results are returned directly
+								list = local_data.filter(item=>item.name.indexOf(val)>-1);
+							}else {
+								// If it is not empty, add the tag condition
+								list = local_data.filter(item=>item.name.indexOf(val)>-1&&item.tags.some(item=>search_tag_val.indexOf(item)>-1))
+							}
 						}
 						
 					}else{
@@ -493,6 +499,7 @@
 						}
 						setlocalStorage('movies',movie_data)
 					}
+					console.log(list)
 					var str = '';
 					for(var i=0;i<list.length;i++){
 						str+='<div class="ub ub-ver list-item">'
