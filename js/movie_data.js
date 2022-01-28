@@ -4,7 +4,7 @@ var movie_data=[
 		bannerInfo:{
 			id:1,
 			banner:'./img/movies/banner.jpeg',
-			banner_s:'./img/movies/banner_s.jpeg',
+			banner_s:'./img/movies/mo1.png',
 		},
 		isVip:true,
 		time:'03:14:00',
