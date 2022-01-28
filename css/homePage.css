@@ -30,17 +30,6 @@
 	height: 730px;
 }
 
-.banner-earth02 {
-	background: url(../img/earth02.png?h=10e885) no-repeat;
-	width: 730px;
-	height: 730px;
-}
-
-.banner-earth03 {
-	background: url(../img/earth03.png?h=ab2f78) no-repeat;
-	width: 730px;
-	height: 730px;
-}
 
 .banner-line__circle01 {
 	background-image: url(../img/spr_bannerPathway.png?h=2a666c);
@@ -431,4 +420,13 @@
 }
 .in-btn:hover{
 	background-color: rgba(	220,20,60,.3);
+}
+
+.font2 > p {
+    font-size: 40px;
+    text-shadow: 5px 5px 5px rgb(116, 217, 235);
+    color: rgb(20, 53, 241);
+	
+  
+
 }

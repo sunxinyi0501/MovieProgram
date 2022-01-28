@@ -7,10 +7,10 @@ var movie_data=[
 			banner_s:'./img/movies/banner_s.jpeg',
 		},
 		isVip:true,
-		time:'01:42:25',
-		name:'Jian Feng Dui Jue ',
-		score:7,
-		tags:['2019','Action'],
-		desc:'introduction'
+		time:'03:14:00',
+		name:'Titanic',
+		score:9,
+		tags:['1997','Romantic'],
+		desc:'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.'
 	}
 ]
