@@ -19,6 +19,7 @@ This is a personalized website with information about movies.With some existing 
 - HTML/CSS/JAVASCRIPT
 - Bootstrap
 - EmailJs
+- use icon from https://www.iconfont.cn/?lang=en-us
 
 ## Start-up method
 - Use **http-server**
